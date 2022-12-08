@@ -1,6 +1,11 @@
 # online_bookstore
 数据库课程设计，网上书店系统
-# 后端问题
+## 操作
+初始化sql放置位置为
+```yaml
+localhost:3306/online_bookstore
+```
+## 后端问题
 1. 当使用代码生成器后，对应的mapper层没有添加@mapper注解，
 但是在手动添加后依旧无法解决，在启动类上加上
 ```java
