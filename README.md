@@ -1,11 +1,12 @@
 # online_bookstore
 数据库课程设计，网上书店系统
 ## 操作
-初始化sql放置位置为
+1. 初始化sql放置位置为
 ```yaml
 localhost:3306/online_bookstore
 ```
-[swagger后端测试访问网址](http://localhost:8081/swagger-ui.html)
+2. http://localhost:8081/swagger-ui.html [参考内容](https://blog.csdn.net/weixin_46295656/article/details/114466463)
+
 ## 后端问题
 1. 当使用代码生成器后，对应的mapper层没有添加@mapper注解，
 但是在手动添加后依旧无法解决，在启动类上加上

@@ -7,14 +7,10 @@ import com.springboot.entity.Books;
 import com.springboot.mapper.BooksMapper;
 import com.springboot.service.IBooksService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.apache.ibatis.scripting.xmltags.IfSqlNode;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import javax.xml.ws.RequestWrapper;
 import java.util.List;
-
-import static com.springboot.common.Constants.*;
 
 /**
  * <p>
@@ -31,6 +27,7 @@ public class BooksServiceImpl extends ServiceImpl<BooksMapper, Books> implements
     private BooksMapper booksMapper;
     @Override
     public Result addBook(Books books) {
+
         int insert = booksMapper.insert(books);
         if (insert>=1)
             return Result.success();
@@ -69,9 +66,12 @@ public class BooksServiceImpl extends ServiceImpl<BooksMapper, Books> implements
 
     @Override
     public Result searchByISBN(int ISBN) {
-        QueryWrapper<Books> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("ISBN",ISBN);
-        Books books = booksMapper.selectById(queryWrapper);
+        /*QueryWrapper<Books> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("isbn",ISBN);
+        booksMapper.selectById(queryWrapper);
+       这种语句使用起来是不正确的，会导致查询的结果出现奇怪的问题
+        */
+        Books books = booksMapper.selectById(ISBN);
         if (books!=null)
             return Result.success(books);
         else
@@ -82,7 +82,7 @@ public class BooksServiceImpl extends ServiceImpl<BooksMapper, Books> implements
     public Result searchByName(String name) {
         QueryWrapper<Books> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("book_name",name);
-        Books books = booksMapper.selectById(queryWrapper);
+        Books books = booksMapper.selectOne(queryWrapper);
         if (books!=null)
             return Result.success(books);
         else

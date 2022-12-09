@@ -1,6 +1,8 @@
 package com.springboot.entity;
 
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -20,7 +22,7 @@ import lombok.Setter;
 public class Search implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    @TableId("search_id")
     @ApiModelProperty("主键")
       private Integer searchId;
 

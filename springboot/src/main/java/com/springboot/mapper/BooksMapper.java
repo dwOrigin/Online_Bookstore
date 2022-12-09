@@ -1,8 +1,7 @@
 package com.springboot.mapper;
 
-import com.springboot.common.Result;
-import com.springboot.entity.Books;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.springboot.entity.Books;
 import org.mapstruct.Mapper;
 
 /**

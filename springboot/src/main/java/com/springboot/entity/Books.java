@@ -1,6 +1,31 @@
 package com.springboot.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import lombok.Data;
+import lombok.Value;
+import org.jetbrains.annotations.NotNull;
+
 import java.io.Serializable;
+
+/*@Data
+public class Books implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @TableId(value="ISBN")
+    private int Isbn;
+    private String bookName;
+    private String bookAuthor;
+    private Double bookPrice;
+    private Integer bookQuantities;
+    private Integer bookSaleNumbers;
+    private String bookIntroduction;
+    private String bookImage;
+
+}*/
+import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -8,7 +33,7 @@ import lombok.Setter;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author book_store
@@ -20,9 +45,8 @@ import lombok.Setter;
 public class Books implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    @ApiModelProperty("主键")
-      private Integer isbn;
+    @TableId(value = "ISBN", type = IdType.AUTO)
+    private Integer ISBN;
 
     @ApiModelProperty("书籍名称")
     private String bookName;

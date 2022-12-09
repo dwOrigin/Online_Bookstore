@@ -1,10 +1,13 @@
 package com.springboot.controller;
 
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.springboot.common.Result;
+import com.springboot.service.IBooksService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import javax.annotation.Resource;
+import javax.websocket.server.PathParam;
 
 /**
  * <p>
@@ -17,9 +20,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/books")
 public class BooksController {
-@GetMapping
+    @Autowired
+    private IBooksService booksService;
+/*@GetMapping
     public String hello(){
     return "hello, this store begins to business today";
+}*/
+@GetMapping("/ISBN")
+    public Result searchByISBN(@RequestParam("ISBN") int ISBN){
+    return booksService.searchByISBN(ISBN);
 }
+    @GetMapping("/bookName")
+    public Result searchByName(@RequestParam("bookName") String name){
+        return booksService.searchByName(name);
+    }
 }
 
