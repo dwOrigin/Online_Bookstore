@@ -13,8 +13,9 @@ spring:
       global-config:
         db-config:
           id-type: auto
-
-
+    mvc:
+      pathmatch:
+        matching-strategy: ant_path_matcher
 
 
 configuration:
