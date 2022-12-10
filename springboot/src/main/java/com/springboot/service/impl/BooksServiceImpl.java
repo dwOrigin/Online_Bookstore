@@ -66,11 +66,13 @@ public class BooksServiceImpl extends ServiceImpl<BooksMapper, Books> implements
 
     @Override
     public Result searchByISBN(int ISBN) {
-        /*QueryWrapper<Books> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("isbn",ISBN);
-        booksMapper.selectById(queryWrapper);
-       这种语句使用起来是不正确的，会导致查询的结果出现奇怪的问题
+       /* QueryWrapper<Books> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("ISBN",ISBN);
+        Books books = booksMapper.selectById(queryWrapper);
+        这种语句使用起来是不正确的，会导致查询的结果出现奇怪的问题
+        但是写成selectOne是可以正确查找的
         */
+
         Books books = booksMapper.selectById(ISBN);
         if (books!=null)
             return Result.success(books);

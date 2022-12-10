@@ -73,4 +73,13 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
         else
             return Result.error();
     }
+
+    @Override
+    public Result userDetail(int user_id) {
+        Users users = usersMapper.selectById(user_id);
+        if (users!=null)
+            return Result.success(users);
+        else
+            return Result.error();
+    }
 }

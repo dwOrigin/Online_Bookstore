@@ -24,4 +24,5 @@ public interface IUsersService extends IService<Users> {
 //    退出时，自动删除没有注册的用户
     public Result deleteUnRegisterUser();
 //    用户详情页不知道是否需要做
+    public Result userDetail(int user_id);
 }

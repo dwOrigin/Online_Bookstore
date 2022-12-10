@@ -37,6 +37,20 @@ public class Search implements Serializable {
 
     @ApiModelProperty("书籍作者")
     private String searchBookAuthor;
+    public Search(){
 
+    }
+    public Search(int ISBN,int searchUserId){
+        this.setSearchBookIsbn(ISBN);
+        this.setSearchUserId(searchUserId);
+    }
+    public Search(String searchBookAuthor,int searchUserId){
+        this.setSearchBookAuthor(searchBookAuthor);
+        this.setSearchUserId(searchUserId);
+    }
+    public Search(int searchUserId,String searchBookName){
+        this.setSearchBookName(searchBookName);
+        this.setSearchUserId(searchUserId);
+    }
 
 }

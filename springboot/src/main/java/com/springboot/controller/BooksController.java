@@ -3,6 +3,7 @@ package com.springboot.controller;
 
 import com.springboot.common.Result;
 import com.springboot.service.IBooksService;
+import com.springboot.service.IShoppingsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,10 +23,18 @@ import javax.websocket.server.PathParam;
 public class BooksController {
     @Autowired
     private IBooksService booksService;
-/*@GetMapping
-    public String hello(){
-    return "hello, this store begins to business today";
-}*/
+    @Resource
+    private IShoppingsService shoppingService;
+    /**
+     * 先更新所有书籍的信息，
+     * 然后返回所有的书籍信息
+    * */
+@GetMapping
+    public Result allBooks(){
+    shoppingService.updateBookInfo();
+    return booksService.allBooks();
+}
+/*
 @GetMapping("/ISBN")
     public Result searchByISBN(@RequestParam("ISBN") int ISBN){
     return booksService.searchByISBN(ISBN);
@@ -34,5 +43,10 @@ public class BooksController {
     public Result searchByName(@RequestParam("bookName") String name){
         return booksService.searchByName(name);
     }
+    @GetMapping("/author")
+    public Result searchByAuthor(@RequestParam("author") String author){
+    return booksService.searchByAuthor(author);
+    }
+*/
 }
 

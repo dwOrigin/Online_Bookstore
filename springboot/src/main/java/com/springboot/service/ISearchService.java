@@ -21,4 +21,6 @@ public interface ISearchService extends IService<Search> {
     public Result searchByAuthor(String bookAuthor);
 //    用户的搜索记录
     public Result userSearchHistory(int user_id);
+//    添加搜索记录
+    public Result addHistory(Search search);
 }

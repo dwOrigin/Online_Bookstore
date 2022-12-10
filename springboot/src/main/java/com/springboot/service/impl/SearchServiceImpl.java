@@ -68,4 +68,14 @@ public class SearchServiceImpl extends ServiceImpl<SearchMapper, Search> impleme
             return Result.error();
 
     }
+
+    @Override
+    public Result addHistory(Search search) {
+        int insert = searchMapper.insert(search);
+        if (insert>=1)
+            return Result.success();
+        else
+            return Result.error();
+
+    }
 }
