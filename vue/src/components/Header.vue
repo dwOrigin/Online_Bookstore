@@ -47,6 +47,11 @@ export default {
       Search,
       ArrowDown
     }
+  },
+  methods:{
+    logout(){
+      this.$router.push("/login")
+    }
   }
 
 }
