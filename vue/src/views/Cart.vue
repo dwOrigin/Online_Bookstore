@@ -15,7 +15,7 @@
     <el-table-column prop="userid" label="用户ID"></el-table-column>
     <el-table-column label="操作" width="180" text-align="center">
         <template v-slot="scope" >
-          <el-button type="success" @click="handleEdit(scope.row)">编辑<i class="el-icon-edit"></i></el-button>
+          <el-button type="danger" @click="handleEdit(scope.row)">删除<i class="el-icon-edit"></i></el-button>
           <el-popconfirm
           class="ml-5"
           confirm-button-text="确定"
@@ -25,9 +25,7 @@
           title="您确定删除吗"
           @confirm="del(scope.row.id)"
           >
-          <el-button type="danger" slot="reference">删除<i class="el-icon-remove-outline"></i>
-
-          </el-button>
+        
           </el-popconfirm>
         </template>
     </el-table-column>
@@ -84,7 +82,8 @@ export default {
         goodsName:"数据库原理",
         num:"1",
         img:"https://tse2-mm.cn.bing.net/th/id/OIP-C.WI_kPj3BbBOgzKFUFj8NQgHaHa?pid=ImgDet&rs=1",
-        price:"25"
+        price:"25",
+        userid:"8848"
       }
     ]
     }

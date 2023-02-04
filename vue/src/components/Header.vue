@@ -10,22 +10,20 @@
         </el-menu></div>
       <div style="margin-right: 500px;margin-top: 5px ;">
     <el-input
-      v-model="input3"
+      v-model="bookName"
       placeholder="请输入书名"
       class="input-with-select"
     >
       <template #append>
-        <el-button :icon="Search" />
+        <el-button :icon="Search" @click="Search(bookName)"/>
       </template>
     </el-input></div>
   
     <div style="width:60px;padding-top:18px;font-weight: bold">
         <el-dropdown>
-    <span class="el-dropdown-link" >
+    <span class="el-dropdown-link" :icon="ArrowDown">
       欢迎您
-      <el-icon class="el-icon--right">
-        <ArrowDown />
-      </el-icon>
+
     </span>
     <template #dropdown>
       <el-dropdown-menu>
@@ -51,10 +49,15 @@ export default {
   methods:{
     logout(){
       this.$router.push("/login")
+    },
+    Search(bookName){
+      if(bookName==null){
+        this.$router.push("/goods")
+      }
     }
   }
-
 }
+
 </script>
 
 <style>
