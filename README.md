@@ -15,4 +15,6 @@ localhost:3306/online_bookstore
 ```
 后可以操作，且此时去除几项@mapper也可以运行[参考内容](https://blog.csdn.net/qq_17589751/article/details/104795465?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-104795465-blog-90473681.pc_relevant_3mothn_strategy_recovery&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-104795465-blog-90473681.pc_relevant_3mothn_strategy_recovery&utm_relevant_index=1)
 
-
+## 前端问题
+1.在vue目录下进行运行 npm run serve，若有依赖报错，则可先cnpm install 
+2.目前尚未实现跨域问题。页面只有三个，home,detail和login
