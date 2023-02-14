@@ -25,13 +25,15 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
     @Resource
     private UsersMapper usersMapper;
     @Override
-    public Result allUsers() {
+    public Result allUsers(Users tmp) {
         QueryWrapper<Users> queryWrapper = new QueryWrapper<>();
         List<Users> users = usersMapper.selectList(queryWrapper);
-        if (users!=null)
-            return Result.success(users);
-        else
-            return Result.error();
+        for(Users userInDB : users) {
+            if (userInDB.getUserEmail().equalsIgnoreCase(tmp.getUserEmail())
+                    &&userInDB.getuserPassword().equalsIgnoreCase(tmp.getuserPassword()))
+                return Result.success("success");
+        }
+        return Result.error();
     }
 
     @Override

@@ -42,4 +42,7 @@ public class Users implements Serializable {
     private Boolean userOrRegister;
 
 
+    public String getuserPassword() {
+        return userPassword;
+    }
 }

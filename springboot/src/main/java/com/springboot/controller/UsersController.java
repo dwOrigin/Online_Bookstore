@@ -1,8 +1,12 @@
 package com.springboot.controller;
 
 
+import com.springboot.common.Result;
+import com.springboot.entity.Users;
 import com.springboot.service.IUsersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -20,5 +24,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class UsersController {
 @Autowired
     private IUsersService usersService;
+    @PostMapping("/register")
+    public Result register(@RequestBody Users user){
+        return usersService.addUsers(user);
+    }
+    @PostMapping("/login")
+    public Result login(@RequestBody Users user){
+
+       return usersService.allUsers(user);
+    }
 }
 
