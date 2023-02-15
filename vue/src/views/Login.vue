@@ -68,13 +68,13 @@
 				if (self.form.useremail != "" && self.form.userpwd != "") {
 					axios({
 						method:'post',
-						url: 'http://localhost:8080/user/login',
+						url: 'http://localhost:8081/users/login',
 						data: {
-							id:0,
-							email: self.form.useremail,
-							username: "",
-							password: self.form.userpwd,
-							address: "",
+							userId:0,
+              userEmail: self.form.useremail,
+							userName: "",
+              userPassword: self.form.userpwd,
+              userAddress: "",
 							userOrRegister: 0
 						}
 					})
