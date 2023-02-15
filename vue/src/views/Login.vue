@@ -41,6 +41,7 @@
 
 <script>
 	import axios from 'axios'
+	import store from '../components/state.vue';
 	export default{
 		name:'Login',
 		data(){
@@ -65,30 +66,41 @@
 			},
 			login() {
 				const self = this;
+				console.log(self.form.useremail);
+				console.log(self.form.userpwd);
 				if (self.form.useremail != "" && self.form.userpwd != "") {
 					axios({
 						method:'post',
 						url: 'http://localhost:8081/users/login',
 						data: {
 							userId:0,
-              userEmail: self.form.useremail,
+							userEmail: self.form.useremail,
 							userName: "",
-              userPassword: self.form.userpwd,
-              userAddress: "",
+							userPassword: self.form.userpwd,
+							userAddress: "",
 							userOrRegister: 0
 						}
 					})
 					.then( res => {
-						switch(res.data){
-							case 0: 
-								alert("登陆成功！");
-								break;
-							case -1:
-								this.emailError = true;
-								break;
-							case 1:
-								this.passwordError = true;
-								break;
+						console.log(res.data);
+						if(res.data.message == '操作成功')
+						{
+						self.$message({
+                        showClose: true,
+                        message: '登录成功',
+                        type: 'success'
+                        });
+						sessionStorage.setItem("islogin",true);
+						sessionStorage.setItem("user",JSON.stringify(res.data.data));
+						store.commit('updatename',sessionStorage.getItem("user"));
+                        store.commit('updateislogin',sessionStorage.getItem("islogin"));
+						console.log(sessionStorage.getItem("user"));
+						console.log(sessionStorage.getItem("islogin"));
+                        self.$router.push("/Home");
+						}
+						else
+						{
+							alert("登录失败！请检查账户密码是否正确");
 						}
 					})
 					.catch( err => {
@@ -103,13 +115,13 @@
 				if(self.form.username != "" && self.form.useremail != "" && self.form.userpwd != ""){
 					axios({
 						method:'post',
-						url: 'http://localhost:8080/user/register',
+						url: 'http://localhost:8081/users/register',
 						data: {
-							id:0,
-							email: self.form.useremail,
-							username: self.form.username,
-							password: self.form.userpwd,
-							address: China,
+							userId:0,
+							userEmail: self.form.useremail,
+							userName: self.form.username,
+							userPassword: self.form.userpwd,
+							userAddress: 'China',
 							userOrRegister: 0
 						}
 					})

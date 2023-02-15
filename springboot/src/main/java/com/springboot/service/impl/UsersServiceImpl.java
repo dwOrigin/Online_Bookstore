@@ -24,41 +24,23 @@ import java.util.List;
 public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements IUsersService {
     @Resource
     private UsersMapper usersMapper;
-  /*  @Override
+    @Override
     public Result allUsers(Users tmp) {
         QueryWrapper<Users> queryWrapper = new QueryWrapper<>();
         List<Users> users = usersMapper.selectList(queryWrapper);
         for(Users userInDB : users) {
+            System.out.println(userInDB.getUserEmail()+"shujk"+tmp.getUserEmail());
+            System.out.println(userInDB.getuserPassword()+"shujk"+tmp.getuserPassword());
             if (userInDB.getUserEmail().equalsIgnoreCase(tmp.getUserEmail())
-                    &&userInDB.getuserPassword().equalsIgnoreCase(tmp.getuserPassword())) {
-                System.out.println(Result.success(true));
-                return Result.success(true);
-            }else
+                    &&userInDB.getuserPassword().equalsIgnoreCase(tmp.getuserPassword()))
             {
-//                System.out.println(Result.success(false));
-                return Result.success(false);
+                System.out.println("success");
+                return Result.success(userInDB.getUserId());
             }
         }
         return Result.error();
-    }*/
-    @Override
-    public Result allUsers(Users tmp) {
-        QueryWrapper<Users> wrapper = new QueryWrapper<>();
-        System.out.println(tmp.getUserEmail());
-        wrapper.eq("user_email",tmp.getUserEmail());
-        wrapper.eq("user_password",tmp.getuserPassword());
-        Users users = usersMapper.selectOne(wrapper);
-        System.out.println(users);
-    if (users!=null) {
-        System.out.println(Result.success(true));
-        return Result.success(true);
     }
-    else {
-        System.out.println(Result.success(false));
 
-        return Result.success(false);
-    }
-        }
     @Override
     public Result addUsers(Users user) {
         Users users =user;
@@ -95,15 +77,6 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
         int delete = usersMapper.delete(queryWrapper);
         if (delete>=0)
             return Result.success();
-        else
-            return Result.error();
-    }
-
-    @Override
-    public Result userDetail(int user_id) {
-        Users users = usersMapper.selectById(user_id);
-        if (users!=null)
-            return Result.success(users);
         else
             return Result.error();
     }
