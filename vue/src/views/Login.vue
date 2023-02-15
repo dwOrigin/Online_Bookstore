@@ -40,6 +40,7 @@
 </template>
 
 <script>
+	import axios from 'axios'
 	export default{
 		name:'Login',
 		data(){
@@ -65,12 +66,16 @@
 			login() {
 				const self = this;
 				if (self.form.useremail != "" && self.form.userpwd != "") {
-					self.$axios({
+					axios({
 						method:'post',
-						url: 'http://127.0.0.1:10520/api/user/login',
+						url: 'http://localhost:8080/user/login',
 						data: {
+							id:0,
 							email: self.form.useremail,
-							password: self.form.userpwd
+							username: "",
+							password: self.form.userpwd,
+							address: "",
+							userOrRegister: 0
 						}
 					})
 					.then( res => {
@@ -96,13 +101,16 @@
 			register(){
 				const self = this;
 				if(self.form.username != "" && self.form.useremail != "" && self.form.userpwd != ""){
-					self.$axios({
+					axios({
 						method:'post',
-						url: 'http://127.0.0.1:10520/api/user/add',
+						url: 'http://localhost:8080/user/register',
 						data: {
-							username: self.form.username,
+							id:0,
 							email: self.form.useremail,
-							password: self.form.userpwd
+							username: self.form.username,
+							password: self.form.userpwd,
+							address: China,
+							userOrRegister: 0
 						}
 					})
 					.then( res => {

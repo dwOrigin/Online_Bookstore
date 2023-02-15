@@ -1,5 +1,5 @@
 create table if not exists `Users`(
-    `user_id` integer not null primary key comment '主键',
+    `user_id` integer not null primary key comment '主键' AUTO_INCREMENT,
     `user_email` varchar(50) not null comment '用户邮箱',
     `user_name` varchar(50) not null comment '用户名',
     `user_password` varchar(50) not null default 'haha' comment '用户密码',
