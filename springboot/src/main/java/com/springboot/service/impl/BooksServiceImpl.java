@@ -54,41 +54,40 @@ public class BooksServiceImpl extends ServiceImpl<BooksMapper, Books> implements
     }
 
     @Override
-    public Result searchByAuthor(String authorName) {
+    public List<Books> searchByAuthor(String authorName) {
         QueryWrapper<Books> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("book_author",authorName);
         List<Books> books = booksMapper.selectList(queryWrapper);
         if (books!=null)
-            return Result.success(books);
+            return books;
         else
-            return Result.error();
+            return null;
     }
 
     @Override
-    public Result searchByISBN(int ISBN) {
-       /* QueryWrapper<Books> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("ISBN",ISBN);
-        Books books = booksMapper.selectById(queryWrapper);
-        这种语句使用起来是不正确的，会导致查询的结果出现奇怪的问题
-        但是写成selectOne是可以正确查找的
+    public Books searchByISBN(int ISBN) {
+        /*QueryWrapper<Books> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("isbn",ISBN);
+        booksMapper.selectById(queryWrapper);
+       这种语句使用起来是不正确的，会导致查询的结果出现奇怪的问题
         */
-
         Books books = booksMapper.selectById(ISBN);
         if (books!=null)
-            return Result.success(books);
+            return books;
         else
-            return Result.error();
+            return null;
     }
 
     @Override
-    public Result searchByName(String name) {
+    public List<Books> searchByName(String name) {
         QueryWrapper<Books> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("book_name",name);
-        Books books = booksMapper.selectOne(queryWrapper);
+        //Books books = booksMapper.selectOne(queryWrapper);
+        List<Books> books = booksMapper.selectList(queryWrapper);
         if (books!=null)
-            return Result.success(books);
+            return books;
         else
-            return Result.error();
+            return null;
     }
 
     @Override
