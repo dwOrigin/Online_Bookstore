@@ -5,11 +5,7 @@ import com.springboot.common.Result;
 import com.springboot.entity.Users;
 import com.springboot.service.IUsersService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -32,6 +28,14 @@ public class UsersController {
     public Result login(@RequestBody Users user){
 
        return usersService.allUsers(user);
+    }
+    @PostMapping("/{user_name}/info")
+    public Result userInfo(@PathVariable("user_name") String username){
+        return usersService.userDetail(username);
+    }
+    @PostMapping("/info/editPassWord")
+    public Result updateUser(@RequestBody Users user){
+        return usersService.updateUsers(user);
     }
 }
 

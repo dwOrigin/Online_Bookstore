@@ -100,8 +100,10 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
     }
 
     @Override
-    public Result userDetail(int user_id) {
-        Users users = usersMapper.selectById(user_id);
+    public Result userDetail(String user_name) {
+        QueryWrapper<Users> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_name",user_name);
+        Users users = usersMapper.selectOne(wrapper);
         if (users!=null)
             return Result.success(users);
         else
