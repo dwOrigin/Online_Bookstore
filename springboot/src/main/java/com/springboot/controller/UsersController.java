@@ -22,12 +22,16 @@ public class UsersController {
     private IUsersService usersService;
     @PostMapping("/register")
     public Result register(@RequestBody Users user){
+        System.out.println("注册");
         return usersService.addUsers(user);
     }
     @PostMapping("/login")
     public Result login(@RequestBody Users user){
-
-       return usersService.allUsers(user);
+        System.out.println("登录");
+        System.out.println(user.getUserEmail());
+        Result tmp=usersService.allUsers(user);
+        System.out.println(tmp);
+       return tmp;
     }
     @PostMapping("/{user_name}/info")
     public Result userInfo(@PathVariable("user_name") String username){
