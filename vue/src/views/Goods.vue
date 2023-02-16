@@ -8,6 +8,7 @@
             <div style="color: #666; padding: 10px">{{item.name}}</div>
             <div style="padding: 10px">
             <el-button type="primary">购买</el-button>
+            <el-button type="success" @click="seeDetail()">查看</el-button>
             </div>
         </div>
         </el-col>
@@ -39,7 +40,12 @@ export default {
             ]
         
         }
+    },
+    methods: {
+        seeDetail () {
+        this.$router.push("/detail")
     }
+}
 }
 </script>
 

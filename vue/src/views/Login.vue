@@ -1,284 +1,114 @@
+
 <template>
-	<div class="login-register">
-		<div class="contain">
-			<div class="big-box" :class="{active:isLogin}">
-				<div class="big-contain" key="bigContainLogin" v-if="isLogin">
-					<div class="btitle">账户登录</div>
-					<div class="bform">
-						<input type="email" placeholder="邮箱" v-model="form.useremail">
-						<span class="errTips" v-if="emailError">* 邮箱填写错误 *</span>
-						<input type="password" placeholder="密码" v-model="form.userpwd">
-						<span class="errTips" v-if="emailError">* 密码填写错误 *</span>
-					</div>
-					<button class="bbutton" @click="login">登录</button>
-				</div>
-				<div class="big-contain" key="bigContainRegister" v-else>
-					<div class="btitle">创建账户</div>
-					<div class="bform">
-						<input type="text" placeholder="用户名" v-model="form.username">
-						<span class="errTips" v-if="existed">* 用户名已经存在！ *</span>
-						<input type="email" placeholder="邮箱" v-model="form.useremail">
-						<input type="password" placeholder="密码" v-model="form.userpwd">
-					</div>
-					<button class="bbutton" @click="register">注册</button>
-				</div>
-			</div>
-			<div class="small-box" :class="{active:isLogin}">
-				<div class="small-contain" key="smallContainRegister" v-if="isLogin">
-					<div class="stitle">你好，朋友!</div>
-					<p class="scontent">开始注册，和我们一起旅行</p>
-					<button class="sbutton" @click="changeType">注册</button>
-				</div>
-				<div class="small-contain" key="smallContainLogin" v-else>
-					<div class="stitle">欢迎回来!</div>
-					<p class="scontent">与我们保持联系，请登录你的账户</p>
-					<button class="sbutton" @click="changeType">登录</button>
-				</div>
-			</div>
-		</div>
+	<div style="width:100%;height:100vh;overflow: hidden;background: pink linear-gradient(to right, rgb(247,209,215),rgb(191,227,241));" >
+	  <div style="width: 500px;border-radius:30px;box-shadow:2px 2px 6px 6px #ccc;margin: 120px auto;height: 270px;display: flex;position: relative;
+  
+  ">
+		<el-form style="margin: 5px auto;" ref="form" :model="form" :rules="rules">
+		  <div style="color: #303133;font-size: 30px;text-align:center;padding:30px 0">登录界面</div>
+		  <el-form-item prop="userName">
+			<el-input :prefix-icon="Avatar"  v-model="form.userName" placeholder="请输入账号" clearable
+					  maxlength="10">
+			</el-input>
+		  </el-form-item >
+		  <el-form-item prop="userPassword">
+			<el-input  :prefix-icon="Lock"  v-model="form.userPassword" show-password clearable placeholder="请输入密码"
+					   maxlength="10" style="width: 300px"></el-input>
+		  </el-form-item>
+		  <el-form-item>
+			<el-button style="width:50%;color:#FFFFFF;margin-left: 5px" type="success" round @click="login" @keyup.enter="keyDown(e)" >登录</el-button>
+			<div style="width: 30%;font-size: 10px;margin-left: 30px">
+			  <el-link style="font-size: 10px" @click="register" type="primary">立即去注册</el-link>
+			 </div>
+		  </el-form-item>
+		</el-form>
+  
+	  </div>
+  
 	</div>
-</template>
-
-<script>
-	import axios from 'axios'
-	import store from '../components/state.vue';
-	export default{
-		name:'Login',
-		data(){
-			return {
-				isLogin:false,
-				emailError: false,
-				passwordError: false,
-				existed: false,
-				form:{
-					username:'',
-					useremail:'',
-					userpwd:''
-				}
-			}
+  </template>
+  
+  <script>
+  
+  import request from "@/utils/request";
+  import { Avatar, Lock } from "@element-plus/icons-vue";
+  export default {
+	name: "Login",
+	setup(){
+	  return{
+		Avatar,
+		Lock,
+	  }
+	},
+	mounted() {
+	 /* window.addEventListener("keydown",this.keyDown)*/
+	},
+	destroyed() {
+  /*    window.removeEventListener("keydown",this.keyDown,false)*/
+	},
+	data() {
+	  return {
+		form: {
+		  userId:'',
+		  userName:'',
+		  userPassword:'',
 		},
-		methods:{
-			changeType() {
-				this.isLogin = !this.isLogin
-				this.form.username = ''
-				this.form.useremail = ''
-				this.form.userpwd = ''
-			},
-			login() {
-				const self = this;
-				console.log(self.form.useremail);
-				console.log(self.form.userpwd);
-				if (self.form.useremail != "" && self.form.userpwd != "") {
-					axios({
-						method:'post',
-						url: 'http://localhost:8081/users/login',
-						data: {
-							userId:0,
-							userEmail: self.form.useremail,
-							userName: "",
-							userPassword: self.form.userpwd,
-							userAddress: "",
-							userOrRegister: 0
-						}
-					})
-					.then( res => {
-						console.log(res.data);
-						if(res.data.message == '操作成功')
-						{
-						self.$message({
-                        showClose: true,
-                        message: '登录成功',
-                        type: 'success'
-                        });
-						sessionStorage.setItem("islogin",true);
-						sessionStorage.setItem("user",JSON.stringify(res.data.data));
-						store.commit('updatename',sessionStorage.getItem("user"));
-                        store.commit('updateislogin',sessionStorage.getItem("islogin"));
-						console.log(sessionStorage.getItem("user"));
-						console.log(sessionStorage.getItem("islogin"));
-                        self.$router.push("/Home");
-						}
-						else
-						{
-							alert("登录失败！请检查账户密码是否正确");
-						}
-					})
-					.catch( err => {
-						console.log(err);
-					})
-				} else{
-					alert("填写不能为空！");
-				}
-			},
-			register(){
-				const self = this;
-				if(self.form.username != "" && self.form.useremail != "" && self.form.userpwd != ""){
-					axios({
-						method:'post',
-						url: 'http://localhost:8081/users/register',
-						data: {
-							userId:0,
-							userEmail: self.form.useremail,
-							userName: self.form.username,
-							userPassword: self.form.userpwd,
-							userAddress: 'China',
-							userOrRegister: 0
-						}
-					})
-					.then( res => {
-						switch(res.data){
-							case 0:
-								alert("注册成功！");
-								this.login();
-								break;
-							case -1:
-								this.existed = true;
-								break;
-						}
-					})
-					.catch( err => {
-						console.log(err);
-					})
-				} else {
-					alert("填写不能为空！");
-				}
-			}
+		rules:{
+		  userName:[
+			{required:true,message:'请输入账号',trigger:'blur'},
+			{min:6,max:10,message:'长度在6到10个字符',trigger:'blur'}
+		  ],
+		  userPassword:[
+			{required:true,message:'请输入密码',trigger:'blur'},
+			{min:6,max:10,message:'长度在6到10个字符',trigger:'blur'}
+		  ]
 		}
-	}
-</script>
-
-<style scoped="scoped">
-	.login-register{
-		width: 100vw;
-		height: 100vh;
-		box-sizing: border-box;
-	}
-	.contain{
-		width: 60%;
-		height: 60%;
-		position: relative;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%,-50%);
-		background-color: #fff;
-		border-radius: 20px;
-		box-shadow: 0 0 3px #f0f0f0,
-					0 0 6px #f0f0f0;
-	}
-	.big-box{
-		width: 70%;
-		height: 100%;
-		position: absolute;
-		top: 0;
-		left: 30%;
-		transform: translateX(0%);
-		transition: all 1s;
-	}
-	.big-contain{
-		width: 100%;
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-	}
-	.btitle{
-		font-size: 1.5em;
-		font-weight: bold;
-		color: rgb(57,167,176);
-	}
-	.bform{
-		width: 100%;
-		height: 40%;
-		padding: 2em 0;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-around;
-		align-items: center;
-	}
-	.bform .errTips{
-		display: block;
-		width: 50%;
-		text-align: left;
-		color: red;
-		font-size: 0.7em;
-		margin-left: 1em;
-	}
-	.bform input{
-		width: 50%;
-		height: 30px;
-		border: none;
-		outline: none;
-		border-radius: 10px;
-		padding-left: 2em;
-		background-color: #f0f0f0;
-	}
-	.bbutton{
-		width: 20%;
-		height: 40px;
-		border-radius: 24px;
-		border: none;
-		outline: none;
-		background-color: rgb(57,167,176);
-		color: #fff;
-		font-size: 0.9em;
-		cursor: pointer;
-	}
-	.small-box{
-		width: 30%;
-		height: 100%;
-		background: linear-gradient(135deg,rgb(57,167,176),rgb(56,183,145));
-		position: absolute;
-		top: 0;
-		left: 0;
-		transform: translateX(0%);
-		transition: all 1s;
-		border-top-left-radius: inherit;
-		border-bottom-left-radius: inherit;
-	}
-	.small-contain{
-		width: 100%;
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-	}
-	.stitle{
-		font-size: 1.5em;
-		font-weight: bold;
-		color: #fff;
-	}
-	.scontent{
-		font-size: 0.8em;
-		color: #fff;
-		text-align: center;
-		padding: 2em 4em;
-		line-height: 1.7em;
-	}
-	.sbutton{
-		width: 60%;
-		height: 40px;
-		border-radius: 24px;
-		border: 1px solid #fff;
-		outline: none;
-		background-color: transparent;
-		color: #fff;
-		font-size: 0.9em;
-		cursor: pointer;
-	}
-	
-	.big-box.active{
-		left: 0;
-		transition: all 0.5s;
-	}
-	.small-box.active{
-		left: 100%;
-		border-top-left-radius: 0;
-		border-bottom-left-radius: 0;
-		border-top-right-radius: inherit;
-		border-bottom-right-radius: inherit;
-		transform: translateX(-100%);
-		transition: all 1s;
-	}
-</style>
+	  }
+	},
+	methods: {
+	 /* keyDown(e){
+		console.log("e",e.keyCode)
+		if(e.keyCode===13){
+		  this.login()
+		}
+	  },*/
+	  register(){
+		this.$router.push("/register")
+	  },
+	  login() {
+		if(this.form.userPassword==null||this.form.userName==null){
+		  this.$message({
+			type:"error",
+			message:"账号或者密码不能为空",
+		  })
+		  return;
+		}
+		this.$refs["form"].validate((valid)=>{
+		  if(valid){
+			request.post("/user/login",this.form).then(res => {
+			  if (res.code === 200) {
+				sessionStorage.setItem("userId",res.data.userId);
+				sessionStorage.setItem("userName",res.data.userName);
+				this.$message({
+				  type: "success",
+				  message: "登录成功"
+				})
+				this.$router.push({
+				  path:'/'+sessionStorage.getItem("userName")
+				})//跳转到主页面
+			  } else {
+				this.$message({
+				  type: "error",
+				  message: res.msg
+				})
+			  }
+			})
+		  }
+			}
+		)
+	  },
+  
+	},
+  }
+  </script>
+  
