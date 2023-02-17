@@ -23,11 +23,11 @@
         </template>
       </el-table-column>
 
-      <el-table-column prop="userid" label="用户ID"></el-table-column>
+      
       <el-table-column label="操作" width="180" text-align="center">
         <template v-slot="scope">
-          <el-button type="danger" @click="handleEdit(scope.row)"
-            >删除<i class="el-icon-edit"></i
+          <el-button type="success" @click="handleEdit(scope.row)"
+            >点击查看<i class="el-icon-edit"></i
           ></el-button>
           <el-popconfirm
             class="ml-5"
@@ -62,18 +62,8 @@
         text-align: right;
       "
     >
-      <div style="color: red">总价 ￥{{ totalPrice }}</div>
-      <div style="margin: 10px 0">
-        <el-button
-          style="
-            background-color: red;
-            color: white;
-            font-size: 18px;
-            padding: 10px 20px;
-          "
-          >下单</el-button
-        >
-      </div>
+      
+      
     </div>
 
     <el-dialog
@@ -117,11 +107,34 @@ export default {
       tableData: [
         {
           id: 1,
-          goodsName: "数据库原理",
+          goodsName: "茶馆",
           num: "1",
-          img: "https://tse2-mm.cn.bing.net/th/id/OIP-C.WI_kPj3BbBOgzKFUFj8NQgHaHa?pid=ImgDet&rs=1",
-          price: "25",
-          userid: "8848",
+          img: "https://img10.360buyimg.com/n1/jfs/t25927/12/1895594073/95966/2a873bcb/5bbec1bcN620b6b5a.jpg",
+          price: "18",
+          payTime: "2023/2/11 19:00"
+        },
+        {
+          id: 2,
+          goodsName: "老舍散文精选",
+          num: "1",
+          img: "https://ts1.cn.mm.bing.net/th/id/R-C.5621da63605feebd762139fefb682d31?rik=CQolCCCSQ6bW0Q&riu=http%3a%2f%2fimage12.bookschina.com%2f2018%2f20180525%2f7683893.jpg&ehk=HtC7WipRGBQ%2fmTBI%2bjO6Ee6xfM5VM5YvXnUCDHH9QzM%3d&risl=&pid=ImgRaw&r=0",
+          price: "22",
+          payTime: "2023/2/9 20:00"
+        },
+        {
+          id: 3,
+          goodsName: "四世同堂",
+          num: "1",
+          img: "https://ts1.cn.mm.bing.net/th/id/R-C.dab13089ecedfead129fdea813acf656?rik=9OuZ9uwWhmWMsQ&riu=http%3a%2f%2fy3.ifengimg.com%2fd183847b5f5545a0%2f2012%2f0307%2frdn_4f56aea2c4a0f.jpg&ehk=omy%2bk3BK7jR40Jwad0%2bF0GyHRyR3xvDRknaeXpKMSLs%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1",
+          price: "20",
+          payTime: "2023/2/15 20:00"
+        },  {
+          id: 4,
+          goodsName: "月牙儿",
+          num: "1",
+          img: "https://img3.jarhu.com/goodimages/201602/232/gi1456219582852.jpg",
+          price: "30",
+          payTime: "2023/2/16 21:00"
         },
       ],
     };

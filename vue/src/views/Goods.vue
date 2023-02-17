@@ -33,13 +33,28 @@ export default {
             goods:[
                 {
                     id:'',
-                    img:'',
-                    name:''
+                    img:'https://ts1.cn.mm.bing.net/th/id/R-C.ff8d35e7d6f7462ade27bc63f653d32f?rik=oHnTt%2bCfmgRTfQ&riu=http%3a%2f%2fwww.wdp.com.cn%2fhtml%2fupload%2fadmin%2fimage%2f2021%2f03%2f01%2f1614586387945.jpg&ehk=0CWfTx22Qhp0e4iok2r7FOHxZAtAh3LNXnNNv93xUKg%3d&risl=&pid=ImgRaw&r=0',
+                    name:'数据库原理及其应用'
                 },
                 {
                     id:'',
-                    img:'',
-                    name:''
+                    img:'https://ts1.cn.mm.bing.net/th/id/R-C.fff2d100c8a32c65f3aba46771ffc083?rik=62qTiRD5ZqfwvA&riu=http%3a%2f%2fwww.java1234.com%2fuploads%2fallimg%2f150225%2f1-1502250912464N.jpg&ehk=wSYccYxNF%2bPg1TASKeu17ofpbsFBjCMIEb4N341x9Sg%3d&risl=&pid=ImgRaw&r=0',
+                    name:'数据库原理'
+                },
+                {
+                    id:'',
+                    img:'https://pic1.zhimg.com/50/v2-ca9fb62800c87926324b84663e7cc41a_720w.jpg?source=54b3c3a5',
+                    name:'数据库系统概念'
+                },
+                {
+                    id:'',
+                    img:'https://pic1.zhimg.com/50/v2-8c751df14495839927b9b673432d5d6e_720w.jpg?source=54b3c3a5',
+                    name:'数据库系统'
+                },
+                {
+                    id:'',
+                    img:'https://pic4.zhimg.com/50/v2-8e51057f640f9010e10f66b46ce79882_720w.jpg?source=54b3c3a5',
+                    name:'MySQL数据库应用从入门到精通'
                 }
             ],
             bookInf2:[{

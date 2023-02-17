@@ -12,7 +12,7 @@
       </template>
     </el-table-column>
 
-    <el-table-column prop="userid" label="用户ID"></el-table-column>
+   
     <el-table-column label="操作" width="180" text-align="center">
         <template v-slot="scope" >
           <el-button type="danger" @click="handleEdit(scope.row)">删除<i class="el-icon-edit"></i></el-button>
@@ -75,16 +75,38 @@ export default {
   name: "Cart",
   data () {
     return {
-      totalPrice: 520,
+      totalPrice: " ",
       tableData : [
         {
         id:1,
         goodsName:"数据库原理",
         num:"1",
-        img:"https://tse2-mm.cn.bing.net/th/id/OIP-C.WI_kPj3BbBOgzKFUFj8NQgHaHa?pid=ImgDet&rs=1",
+        img:"https://ts1.cn.mm.bing.net/th/id/R-C.f0cbfb731cb5a0571183b9e19a980d52?rik=sT9McGEbEMoMAQ&riu=http%3a%2f%2fwww.tup.tsinghua.edu.cn%2fupload%2fbigbookimg3%2f057816-01.jpg&ehk=v2lSrvrtiKJWGUmF1j3RigzE4qBCaOdCf8zTocjL3ps%3d&risl=&pid=ImgRaw&r=0",
         price:"25",
-        userid:"8848"
-      }
+      
+      },
+      {
+        id:2 ,
+        goodsName:"计算机组成原理",
+        num:"1",
+        img:"https://ts1.cn.mm.bing.net/th/id/R-C.a2c3b5f13a58821e80b680eafe2b6a47?rik=crxgyt4AZUOQAw&riu=http%3a%2f%2fwww.ecsponline.com%2fbook_2019%2f2019%2flt%2f9787030619716-006093-fcv_lt.jpg&ehk=TYF6dWt7WOugyVuB13BOwA7tXs2yPRj3dh5qpHMVtB0%3d&risl=&pid=ImgRaw&r=0",
+        price:"20",
+       
+      },
+      {
+        id:3,
+        goodsName:"数据结构",
+        num:"1",
+        img:"https://img.alicdn.com/bao/uploaded/i1/671432529/TB1iJPfPXXXXXXWaFXXXXXXXXXX_!!0-item_pic.jpg",
+        price:"18",
+       
+      }, {
+        id:4,
+        goodsName:"编译原理",
+        num:"1",
+        img:"https://tse3-mm.cn.bing.net/th/id/OIP-C.Dpswl2PHC4lBbc5mbVf33AAAAA?pid=ImgDet&rs=1",
+        price:"22",
+      },
     ]
     }
   }

@@ -93,7 +93,7 @@ export default {
   methods: {
     logout() {
       
-      this.$router.push("/login");
+      this.$router.push("/register");
     },
     Search(bookName) {
       const self = this;

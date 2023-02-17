@@ -36,11 +36,11 @@
     data () {
       return {
       goods: {
-        img:"https://tse2-mm.cn.bing.net/th/id/OIP-C.WI_kPj3BbBOgzKFUFj8NQgHaHa?pid=ImgDet&rs=1",
-        name: "资料",
+        img:"https://pic4.zhimg.com/50/v2-8e51057f640f9010e10f66b46ce79882_720w.jpg?source=54b3c3a5",
+        name: "MySQL数据库应用从入门到精通",
         price: "25",
-        description:  "这是一本可靠的书",
-        nums:888
+        description:  "这是一本数据库实战类书籍",
+        nums:5
 
       },
       goodsId: 1,
