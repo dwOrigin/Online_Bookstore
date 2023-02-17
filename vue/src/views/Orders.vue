@@ -5,6 +5,7 @@
       <el-table-column prop="id" label="ID" width="80" sortable></el-table-column>
       <el-table-column prop="goodsName" label="商品名称" ></el-table-column>
       <el-table-column prop="price" label="商品单价"></el-table-column>
+      <el-table-column prop="payTime" label="下单时间" ></el-table-column>
       <el-table-column prop="num" label="商品数量"></el-table-column>
       <el-table-column prop="img" label="图片">
         <template v-slot="scope">

@@ -37,11 +37,18 @@ const routes = [{
             import ('../views/Orders.vue')
     },
     {
+        path: '/usr',
+        name: 'Usr',
+        component: () =>
+            import ('../views/Usr.vue')
+    },
+    {
         path: "/:pathMatch(.*)",
         name: "NotFound",
         component: () =>
             import ("@/views/404.vue"),
-    }
+    },
+
 
 ]
 
