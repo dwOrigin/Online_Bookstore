@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 
-
 const routes = [{
         path: '/home',
         name: 'Home',
@@ -32,36 +31,10 @@ const routes = [{
             import ('../views/Goods.vue')
     },
     {
-        path: '/orders',
-        name: 'Orders',
-        component: () =>
-            import ('../views/Orders.vue')
-    },
-    {
-        path: '/usr',
-        name: 'Usr',
-        component: () =>
-            import ('../views/Usr.vue')
-    },
-    {
-        path: "/:pathMatch(.*)",
-        name: "NotFound",
-        component: () =>
-            import ("@/views/404.vue"),
-    },
-
-
-    {
         path: '/help',
         name: 'Help',
         component: () =>
             import ('../views/Help/Help.vue')
-    },
-    {
-        path: '/contact',
-        name: 'Contact',
-        component: () =>
-            import ('../views/Help/Contact.vue')
     },
     {
         path: '/rule',
@@ -70,10 +43,10 @@ const routes = [{
             import ('../views/Help/Rule.vue')
     },
     {
-        path: '/library',
-        name: 'Library',
+        path: '/contact',
+        name: 'Contact',
         component: () =>
-            import ('../views/library/LibraryIndex.vue')
+            import ('../views/Help/Contact.vue')
     }
 ]
 

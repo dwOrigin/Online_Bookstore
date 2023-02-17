@@ -4,6 +4,8 @@ import com.springboot.common.Result;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.springboot.entity.Books;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -20,11 +22,11 @@ public interface IBooksService extends IService<Books> {
 //    删除书籍
     public Result deleteBook(int ISBN);
 //    根据作者名搜索书籍
-    public Result searchByAuthor(String authorName);
+    public List<Books> searchByAuthor(String authorName);
 //    根据ISBN搜索书籍
-    public Result searchByISBN(int ISBN);
+    public Books searchByISBN(int ISBN);
 //    根据书籍名称搜索书籍
-    public Result searchByName(String name);
+    public List<Books> searchByName(String name);
 //    所有书籍
     public Result allBooks();
 //    按照主键更新书籍
